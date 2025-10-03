@@ -1,6 +1,6 @@
 # MCP Server Setup Guide
 
-This document outlines the complete steps and troubleshooting you encountered while setting up the ROS MCP server on Ubuntu 24.04 with ROS 2 Jazzy, Claude Desktop, and Turtlesim. It serves as a reference for installing, configuring, and testing the MCP server in conjunction with ROS and a language model client.
+This document outlines the complete steps and troubleshooting I encountered while setting up the ROS MCP server on Ubuntu 24.04 with ROS 2 Jazzy, Claude Desktop, and Turtlesim. It serves as a reference for installing, configuring, and testing the MCP server in conjunction with ROS and a language model client.
 
 ---
 
