@@ -11,6 +11,20 @@ This document details the steps taken to set up the ROS-MCP server, configure Cl
 
 ---
 
+## Prerequisites
+
+Before starting, ensure the following:
+
+- **Operating System**: Ubuntu 22.04 or higher
+- **ROS 2**: ROS 2 Jazzy (or newer)
+- **Python 3**: Required for `uv` and MCP server
+- **Git**: To clone repositories
+- **Basic build tools**: `build-essential`, `curl`, `python3-pip`  
+
+> ⚠️ You need either ROS installed locally on your machine **OR** access over the network to a robot/computer with ROS installed. The MCP server connects to ROS systems on a robot, so a running ROS environment is required.
+
+---
+
 ## 1. Install the MCP Server (Host machine where the LLM runs)
 
 ### 1.1. Clone the Repository
