@@ -164,35 +164,4 @@ Make the robot move.
 
 ---
 
-## 8. Notes
-
-- MCP server communicates with ROS via rosbridge WebSocket (STDIO transport by default).  
-- Claude Desktop communicates with MCP server using STDIO (configured in JSON).  
-- You can issue natural language commands to control robots:
-
-```plaintext
-Make the robot move forward.
-```
-
-- Or query ROS state:
-
-```plaintext
-What topics and services are available?
-```
-
----
-
-## 9. Next Steps / Tips
-
-- For testing, use Turtlesim as a simple ROS “hello world.”  
-- For remote robots, configure HTTP transport for MCP server.  
-- Check logs with:
-
-```bash
-ps aux | grep rosbridge
-ps aux | grep ros-mcp
-```
-
----
-
 This guide documents installation, configuration, testing, and troubleshooting of
