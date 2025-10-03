@@ -171,11 +171,7 @@ Make the robot move.
 
 | Issue | Symptoms | Solution |
 |-------|----------|---------|
-| Python shebang mismatch | rosbridge and rosapi nodes fail with `FileNotFoundError` | Updated shebang to `#!/usr/bin/python3` |
-| ros-mcp-server not appearing in Claude | MCP tool missing | Ensure JSON config uses absolute path; restart Claude Desktop |
-| curl to `localhost:9090/topics` returns 404 | rosbridge WebSocket only responds to MCP/ROS requests | Use MCP or rosbridge WebSocket clients instead |
-| Turtlesim QSocketNotifier warning | `Can only be used with threads started with QThread` | Ignored; Turtlesim still works |
-| Debian install warning | Unsandboxed download warning | Ignored; package installed successfully |
+| Installing rosbridge_server | COnflicting with Conda Libs | Don't use conda env |
 
 ---
 
