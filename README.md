@@ -95,6 +95,7 @@ Add the MCP server section:
 - The ros-mcp-server should appear in the tool list.
 - You can now send commands to ROS via natural language.
 <img width="614" height="640" alt="Image" src="https://github.com/user-attachments/assets/1f22d8ac-7b5d-4685-8887-b243dc69df33" />
+
 ---
 
 ## 3. Install and Run rosbridge (On ROS machine / same machine)
