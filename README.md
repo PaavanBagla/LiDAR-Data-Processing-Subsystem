@@ -1,18 +1,23 @@
 # MCP Server Setup Guide
 
-This document outlines the complete steps and troubleshooting I encountered while setting up the ROS MCP server on Ubuntu 24.04 with ROS 2 Jazzy, Claude Desktop, and Turtlesim. It serves as a reference for installing, configuring, and testing the MCP server in conjunction with ROS and a language model client.
+This document details the steps taken to set up the ROS-MCP server, configure Claude Desktop as an MCP client, and test integration with ROS 2 (Turtlesim). The setup follows the official installation guides for both the MCP server and Claude Desktop, with notes on issues and resolutions.
 
 ---
 
-## 1. Prerequisites
+## References
 
-- Ubuntu 24.04
-- ROS 2 Jazzy installed
-- Python 3.12
-- Git installed
-- Basic terminal familiarity
+- ROS-MCP Server Installation Guide: [https://github.com/robotmcp/ros-mcp-server/blob/main/docs/installation.md](https://github.com/robotmcp/ros-mcp-server/blob/main/docs/installation.md)
+- Claude Desktop Linux Setup: [https://github.com/aaddrick/claude-desktop-debian](https://github.com/aaddrick/claude-desktop-debian)
 
-> ⚠️ Note: Make sure ROS 2 is properly sourced before running any ROS commands.
+---
+
+## 1. Install the MCP Server (Host machine where the LLM runs)
+
+### 1.1. Clone the Repository
+
+```bash
+git clone https://github.com/robotmcp/ros-mcp-server.git
+> ⚠️ Note: Save the absolute path to this directory for later configuration in Claude Desktop.
 
 ---
 
