@@ -175,4 +175,14 @@ Make the robot move.
 
 ---
 
-This guide documents installation, configuration, testing, and troubleshooting of
+## 8. Summary
+
+1. MCP server is installed and running.
+2. Claude Desktop is configured to launch MCP server.
+3. rosbridge is running on ROS.
+4. Turtlesim is running as the test robot.
+5. Claude can now send ROS commands and query topics successfully.
+
+---
+
+This guide documents installation, configuration, testing, and troubleshooting of the ROS-MCP server with Claude Desktop and ROS 2 integration.
