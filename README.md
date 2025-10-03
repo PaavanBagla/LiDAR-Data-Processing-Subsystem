@@ -17,6 +17,7 @@ This document details the steps taken to set up the ROS-MCP server, configure Cl
 
 ```bash
 git clone https://github.com/robotmcp/ros-mcp-server.git
+```
 > ⚠️ Note: Save the absolute path to this directory for later configuration in Claude Desktop.
 
 ---
