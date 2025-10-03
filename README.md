@@ -94,7 +94,7 @@ Add the MCP server section:
 - Launch Claude Desktop.
 - The ros-mcp-server should appear in the tool list.
 - You can now send commands to ROS via natural language.
-<img width="614" height="640" alt="Image" src="https://github.com/user-attachments/assets/1f22d8ac-7b5d-4685-8887-b243dc69df33" />
+<img width="614" height="640" alt="Image" src="https://github.com/user-attachments/assets/64522a5f-3637-40bc-a45c-7b5ee9657e43" />
 
 ---
 
