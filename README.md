@@ -88,7 +88,7 @@ Add the MCP server section:
   }
 }
 ```
-> Note: Ensure the directory path matches the location of your cloned MCP server.
+> ⚠️ Note: Ensure the directory path matches the location of your cloned MCP server.
 
 ### 2.3. Test the Connection
 - Launch Claude Desktop.
