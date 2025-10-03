@@ -20,112 +20,60 @@ git clone https://github.com/robotmcp/ros-mcp-server.git
 ```
 > ⚠️ Note: Save the absolute path to this directory for later configuration in Claude Desktop.
 
----
-
-## 2. Install ROS Bridge
-
-### Steps
-
-1. Install the ROS bridge server:
-
+### 1.2. Install UV (Python Virtual Environment Manager)
+Option A: Shell installer
 ```bash
-sudo apt install ros-jazzy-rosbridge-server ros-jazzy-rosapi
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
-
-2. Verify installation:
-
-```bash
-ls -l /opt/ros/jazzy/lib/rosbridge_server/
-# Should contain rosbridge_websocket and rosbridge_websocket.py
-
-ls -l /opt/ros/jazzy/lib/rosapi/
-# Should contain rosapi_node
-```
-
-3. Fix Python shebang for Python 3.12 (Ubuntu default):
-
-```bash
-sudo sed -i '1s|.*|#!/usr/bin/python3|' /opt/ros/jazzy/lib/rosbridge_server/rosbridge_websocket
-sudo sed -i '1s|.*|#!/usr/bin/python3|' /opt/ros/jazzy/lib/rosapi/rosapi_node
-```
-
-4. Source ROS:
-
-```bash
-source /opt/ros/jazzy/setup.bash
-```
-
-5. Launch the ROS bridge server:
-
-```bash
-ros2 launch rosbridge_server rosbridge_websocket_launch.xml
-```
-
-> ✅ Expected Output:
-```
-[rosbridge_websocket-1] Rosbridge WebSocket server started on port 9090
-```
-
----
-
-## 3. Clone and Install MCP Server
-
-1. Clone the MCP server repository:
-
-```bash
-git clone https://github.com/robotmcp/ros-mcp-server.git
-cd ros-mcp-server
-```
-
-2. Install `uv` (Python virtual environment manager):
-
-```bash
-pip install uv
-```
-
-3. Verify:
-
+Then restart your shell or source your .bashrc so uv is in PATH.
+- Verify Installation:
 ```bash
 uv --version
-# uv 0.8.22
 ```
-
+- Install required uv packages for the ROS-MCP server:
+```bash
+uv pip install -e .
+```
 ---
 
-## 4. Install Claude Desktop
+## 2. Install and Configure a Language Model Client (Claude Desktop)
 
-1. Clone or download the Linux build of Claude Desktop:
+### 2.1. Download Claude Desktop (Linux/Ubuntu)
+Follow instructions from: Claude Desktop Linux Setup: [https://github.com/aaddrick/claude-desktop-debian](https://github.com/aaddrick/claude-desktop-debian)
 
+Steps:
 ```bash
 git clone https://github.com/aaddrick/claude-desktop-debian.git
 cd claude-desktop-debian
-```
 
-2. Install the `.deb` package:
+# Build default .deb package
+./build.sh
 
-```bash
+# Install the package
 sudo apt install ./claude-desktop_0.13.37_amd64.deb
 ```
-
 > ⚠️ Warning seen:
 ```
 N: Download is performed unsandboxed as root as file '...' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
 ```
 > ✅ This can be safely ignored.
 
----
-
-## 5. Configure Claude Desktop to launch MCP server
-
-1. Locate or create the config file:
-
+Verify installation:
 ```bash
-~/.config/Claude/claude_desktop_config.json
+which claude-desktop
+# Expected: /usr/bin/claude-desktop
+
+# Or run the app
+claude-desktop
 ```
 
-2. Add the following under `"mcpServers"` (replace `<ABSOLUTE_PATH>` with your MCP server path):
-
-```json
+### 2.2. Configure MCP Server in Claude Desktop
+Edit or create the configuration file:
+```bash
+nano ~/.config/Claude/claude_desktop_config.json
+```
+Add the MCP server section:
+```bash
 {
   "mcpServers": {
     "ros-mcp-server": {
@@ -140,31 +88,67 @@ N: Download is performed unsandboxed as root as file '...' couldn't be accessed 
   }
 }
 ```
+> Note: Ensure the directory path matches the location of your cloned MCP server.
 
-3. Launch Claude Desktop and verify that `ros-mcp-server` appears in the tools list.
+### 2.3. Test the Connection
+- Launch Claude Desktop.
+- The ros-mcp-server should appear in the tool list.
+- You can now send commands to ROS via natural language.
 
 ---
 
-## 6. Test with Turtlesim
+## 3. Install and Run rosbridge (On ROS machine / same machine)
 
-1. Open a terminal and launch Turtlesim:
+### 3.1. Install rosbridge_server
 
+```bash
+sudo apt install ros-${ROS_DISTRO}-rosbridge-server
+```
+> This package allows the MCP server to communicate with ROS over WebSockets.
+
+### 3.2. Launch rosbridge_server
+Source ROS:
+```bash
+source /opt/ros/jazzy/setup.bash
+```
+Launch the ROS bridge server:
+```bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+```
+> ✅ Expected Output:
+```
+[rosbridge_websocket-1] Rosbridge WebSocket server started on port 9090
+```
+
+---
+
+## 6. Test Workflow with Turtlesim
+Run the following in separate terminals:
+1. Terminal 1: Start rosbridge server
+```bash
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+```
+
+2. Terminal 2: Launch Claude Desktop
+```bash
+claude-desktop
+```
+
+3. Terminal 3: Start Turtlesim
 ```bash
 ros2 run turtlesim turtlesim_node
 ```
 
-2. From Claude Desktop, issue the query:
-
+Now, interact with your robot using Claude:
+- Query topics:
+```bash
+What topics are currently available on the robot?
 ```
-What topics are available on the robot?
+- Command Actions:
+```bash
+Make the robot move.
 ```
-
-- MCP server should return ROS topics:
-```
-/turtle1/cmd_vel
-/turtle1/pose
-/rosout
-```
+> Claude communicates with ROS via the MCP server, which internally uses rosbridge WebSocket to interface with ROS nodes.
 
 ---
 
