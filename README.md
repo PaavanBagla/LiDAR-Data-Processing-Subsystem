@@ -66,8 +66,8 @@ cd LiDAR-Data-Processing-Subsystem
 ```
 ### 2. Create and Activate Conda Environment
 ```bash
-conda create -n lidar_env -y
-conda activate lidar_env
+python3 -m venv capstone_env
+source capstone_env/bin/activate
 ```
 ### 3. Install Dependencies
 ```bash
