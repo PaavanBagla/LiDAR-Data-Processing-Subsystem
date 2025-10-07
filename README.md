@@ -100,9 +100,9 @@ LiDAR-Data-Processing-Subsystem/
 ---
 
 ## 🛰️ Hardware Reference
-- LiDAR Model: SICK TiM561 2D LiDAR (Mounted top-down)
-- Processing Hardware: SBC / Edge GPU
-- Data Interface: Ethernet or ROS2 message stream (to be defined)
+- **LiDAR Model**: SICK TiM561 2D LiDAR (Mounted top-down)
+- **Processing Hardware**: SBC / Edge GPU
+- **Data Interface**: Ethernet or ROS2 message stream (to be defined)
 
 ---
 
