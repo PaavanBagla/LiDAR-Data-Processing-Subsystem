@@ -66,7 +66,7 @@ cd LiDAR-Data-Processing-Subsystem
 ```
 ### 2. Create and Activate Conda Environment
 ```bash
-conda create -n lidar_env python=3.10 -y
+conda create -n lidar_env -y
 conda activate lidar_env
 ```
 ### 3. Install Dependencies
