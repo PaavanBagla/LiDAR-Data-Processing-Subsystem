@@ -32,7 +32,7 @@ Heatmap Visualization (UI Subsystem)
 |------|----------|
 | **Python** | Main language for data processing and ML |
 | **TensorFlow** | Machine Learning / AI inference engine |
-| **Open3D** | Point cloud data visualization & processing |
+| **PyVista** | Point cloud data visualization & processing |
 | **NumPy / Pandas** | Data manipulation |
 | **Matplotlib / Plotly** | Heatmap generation |
 | **AWS / GCP** | Cloud-based compute and data pipeline |

@@ -2,6 +2,5 @@
 numpy
 pandas
 matplotlib
-open3d
 tensorflow
-plotly
+pyvista

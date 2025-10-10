@@ -1,5 +1,5 @@
-# starter.py
-import open3d as o3d
+# starter_pyvista.py
+import pyvista as pv
 import numpy as np
 import tensorflow as tf
 
@@ -10,7 +10,8 @@ def load_dummy_2d_lidar():
         pc: Nx3 array of points (x, y, z=0)
     """
     num_points = 360  # 1-degree resolution
-    angles = np.linspace(-np.pi, np.pi, num_points)  # -180 to +180 degrees
+    angles = np.linspace(-np.pi, np.pi, num_points, endpoint=False)  # -180 to +180 degrees (exclusive of the end)
+    # Using np.random.uniform to get varying distances
     distances = np.random.uniform(0.5, 7.0, size=num_points)  # distances up to 7 meters
 
     x = distances * np.cos(angles)
@@ -20,28 +21,45 @@ def load_dummy_2d_lidar():
     pc = np.stack((x, y, z), axis=1)
     return pc
 
-def visualize_point_cloud_2d(pc):
+def visualize_point_cloud_2d_pyvista(pc):
     """
-    Visualize 2D LiDAR points in Open3D
+    Visualize 2D LiDAR points using PyVista
     """
-    pcd = o3d.geometry.PointCloud()
-    pcd.points = o3d.utility.Vector3dVector(pc)
+    # Create a PyVista PolyData object from the numpy array
+    # PyVista is excellent at handling numpy arrays for plotting
+    point_cloud = pv.PolyData(pc)
+
+    # Create a plotter object
+    plotter = pv.Plotter()
+
+    # Add the point cloud to the plotter
+    # We specify the color and point size for clear visualization
+    plotter.add_mesh(
+        point_cloud,
+        color='red',           # Set points color to red
+        point_size=10,         # Increase point size for better visibility
+        render_points_as_spheres=True  # Render points as spheres for a better look
+    )
     
-    # Optionally color points red
-    colors = np.tile(np.array([[1.0, 0, 0]]), (pc.shape[0], 1))  # red
-    pcd.colors = o3d.utility.Vector3dVector(colors)
+    # Optional: Set the camera view for a better 2D perspective (looking down the Z-axis)
+    plotter.view_xy() 
     
-    o3d.visualization.draw_geometries([pcd], window_name="2D LiDAR Point Cloud")
+    # Optional: Add a title
+    plotter.add_title("2D LiDAR Point Cloud (PyVista)")
+
+    # Display the plot
+    # The 'show()' method opens an interactive window
+    plotter.show()
 
 def main():
-    print("Starting 2D LiDAR Data Processing Subsystem (Open3D)...")
+    print("Starting 2D LiDAR Data Processing Subsystem (PyVista)...")
     
     # Load dummy 2D LiDAR data
     pc = load_dummy_2d_lidar()
     print(f"Point cloud shape: {pc.shape}")
     
-    # Visualize 2D LiDAR point cloud
-    visualize_point_cloud_2d(pc)
+    # Visualize 2D LiDAR point cloud using PyVista
+    visualize_point_cloud_2d_pyvista(pc)
     
     # Placeholder for ML model
     model = tf.keras.Sequential([
